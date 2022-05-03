@@ -1,0 +1,114 @@
+.App {
+  text-align: center;
+}
+
+.containerr {
+  background-color: #393a3a;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-container {
+  background-color: #fff;
+  width: 608px;
+  min-height: 567px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login-container:before {
+  content: url("../public/png/close-button.png");
+  width: 51px;
+  height: 51px;
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
+  top: 65px;
+  left: 1045px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  cursor: pointer;
+}
+.strawberry-section {
+  margin-top: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.niceToSeeYou-section {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#strawberry {
+  width: 74px;
+  height: 80px;
+}
+.login-input-section {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  border: 2px solid #cacfc7;
+  border-radius: 5px;
+  height: 55px;
+  width: 465px;
+  color: #000000;
+  font-size: 14px;
+  padding-left: 20px;
+  box-shadow: none;
+}
+#login-email-input {
+  background: url("../public/png/mail-text.png") no-repeat right 7px;
+}
+#login-password-input {
+  background: url("../public/png/password-text.png") no-repeat right 7px;
+  margin-top: 20px;
+}
+#login-forgot-password {
+  width: 93px;
+  height: 13px;
+  margin-top: 30px;
+  align-self: end;
+  cursor: pointer;
+}
+#login-submit {
+  width: 466px;
+  height: 52px;
+  border-radius: 50px;
+  border: 0;
+  background-color: #dc373f;
+  margin-top: 45px;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 55px;
+}
+.spinner {
+  animation: spin infinite 2s linear;
+  font-size: 32pt;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.react-datepicker__input-container input {
+  width: 200px;
+  height: 37px;
+  color: grey;
+}
