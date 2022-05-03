@@ -28,6 +28,9 @@ const Register = () => {
     );
   }
 
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
   const initialValues = {
     usr_name: "",
     email: "",
@@ -35,6 +38,11 @@ const Register = () => {
     mailAdvertiseCheckbox: false,
     firstName: "",
     lastName: "",
+    homeNumber: "",
+    entryCode: "",
+    apartment: "",
+    city: "",
+    phone: "",
   };
   const validationSchema = yup.object().shape({
     email: yup.string().email("המייל לא חוקי").required("המייל הינו שדה חובה"),
@@ -55,7 +63,13 @@ const Register = () => {
       .number()
       .typeError("הכנס מספרים בלבד")
       .required("מספר הבית הינו שדה חובה"),
-    address: yup.string().required("כתובת הינה שדה חובה"),
+    entryCode: yup.number().typeError("הכנס מספרים בלבד"),
+    apartment: yup.number().typeError("הכנס מספרים בלבד"),
+    city: yup.string().required("שדה העיר הינו שדה חובה"),
+    phone: yup
+      .string()
+      .matches(phoneRegExp, "המספר הטלפון אינו תקין")
+      .required("שדה הטלפון הינו שדה חובה"),
   });
 
   return (
@@ -99,7 +113,8 @@ const Register = () => {
                     />
                   </div>
 
-                  <div className="email-register-section">
+                  {/* email start */}
+                  <div className="bigInput">
                     <Field
                       type="email"
                       name="email"
@@ -114,7 +129,9 @@ const Register = () => {
                       dir="rtl"
                     />
                   </div>
+                  {/* email end */}
 
+                  {/* password start */}
                   <div className="password-register-section">
                     <div id="validate-password-register-group">
                       <Field
@@ -148,7 +165,9 @@ const Register = () => {
                       />
                     </div>
                   </div>
+                  {/* password end */}
 
+                  {/* recive adds start */}
                   <div id="mailAdvertiseSection">
                     <p>אני מאשר/ת קבלת פרסומים במייל</p>
                     <div id="mailAdvertiseCheckboxContainer">
@@ -166,7 +185,9 @@ const Register = () => {
                       alt=""
                     />
                   </div>
+                  {/* recive adds end */}
 
+                  {/* First name and last name start */}
                   <div className="doubleSection">
                     <div className="doubleInputStart">
                       <Field
@@ -200,7 +221,9 @@ const Register = () => {
                       />
                     </div>
                   </div>
+                  {/* First name and last name end */}
 
+                  {/* Home and address start */}
                   <div className="doubleSection">
                     <div className="doubleInputStart">
                       <Field
@@ -234,13 +257,99 @@ const Register = () => {
                       />
                     </div>
                   </div>
-                  <button
-                    type="submit"
-                    className="btn btn-outline-primary mt-2"
-                    disabled={isLoading || !_.isEmpty(errors) || !dirty}
-                  >
-                    Sign Up
-                  </button>
+                  {/* Home and address end */}
+
+                  {/* code,apartment and city start */}
+                  <div className="doubleSection">
+                    <div className="smallInput">
+                      <Field
+                        type="text"
+                        name="entryCode"
+                        id="entryCode"
+                        className="login-input doubleInputs"
+                        dir="rtl"
+                      />
+                      <ErrorMessage
+                        name="entryCode"
+                        component="span"
+                        className="text-danger"
+                        dir="rtl"
+                      />
+                    </div>
+
+                    <div className="smallInput">
+                      <Field
+                        type="text"
+                        name="apartment"
+                        id="apartment"
+                        className="login-input doubleInputs"
+                        dir="rtl"
+                      />
+                      <ErrorMessage
+                        name="apartment"
+                        component="span"
+                        className="text-danger"
+                        dir="rtl"
+                      />
+                    </div>
+
+                    <div className="mediumInput">
+                      <Field
+                        type="text"
+                        name="city"
+                        id="city"
+                        className="login-input doubleInputs"
+                        dir="rtl"
+                      />
+                      <ErrorMessage
+                        name="city"
+                        component="span"
+                        className="text-danger"
+                        dir="rtl"
+                      />
+                    </div>
+                  </div>
+                  {/* code,apartment and city end */}
+
+                  {/*phone start */}
+                  <div className="bigInput" id="phoneSection">
+                    <Field
+                      type="phone"
+                      name="phone"
+                      id="phone"
+                      className="login-input"
+                      dir="rtl"
+                    />
+                    <ErrorMessage
+                      name="phone"
+                      component="span"
+                      className="text-danger"
+                      dir="rtl"
+                    />
+                  </div>
+                  {/*phone end */}
+
+                  {/* Submit section */}
+                  <div className="doubleSection" id="submitSection">
+                    <div className="doubleInputstart">
+                      <button
+                        type="submit"
+                        id="registerSubmit"
+                        disabled={isLoading || !_.isEmpty(errors) || !dirty}
+                      >
+                        המשך לאפשרויות משלוח
+                      </button>
+                    </div>
+
+                    <div className="doubleInputEnd">
+                      <img
+                        id="backToCaryImg"
+                        src="/png/back-to-cart.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  {/* submit section end */}
                 </Form>
               </div>
             </div>
