@@ -29,19 +29,16 @@ const Login = () => {
 
   const initialValues = { email: "", password: "" };
   const validationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email("האימייל אינו תקין")
-      .required("האימייל הוא שדה חובה"),
+    email: yup.string().email("המייל אינו תקין").required("המייל הוא שדה חובה"),
     password: yup
       .string()
       .required("הסיסמה היא שדה חובה")
-      .min(6, "הסיסמה קצרה מדי, הסיסמה חייבת להכיל לפחות 6 תווים "),
+      .min(6, "הסיסמה קצרה מדי, הסיסמה חייבת להכיל לפחות 6 תווים"),
   });
 
   return (
     <>
-      <div className="containerr">
+      <div className="main-container">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

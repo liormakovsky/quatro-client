@@ -1,15 +1,16 @@
-.App {
-  text-align: center;
-}
-
-.containerr {
+.main-container {
   background-color: #393a3a;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
 }
 
+/* Login */
 #login-container {
   background-color: #fff;
   width: 608px;
@@ -93,6 +94,95 @@
   color: #fff;
   font-weight: 600;
   margin-bottom: 55px;
+}
+
+/* Register */
+
+#register-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #fff;
+  width: 850px;
+  min-height: 1080px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+}
+#sub-register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+}
+.top-register-section {
+  margin-top: 47px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+.register-strawberry-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.peginate-section {
+  margin-top: 60px;
+}
+#registerForm {
+  width: 100%;
+}
+.client-details {
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+#client-details-img {
+  height: 12px;
+}
+#signin-text-img {
+  cursor: pointer;
+}
+#register-email-input {
+  width: 100%;
+  margin-top: 20px;
+  background: url("../public/png/mail-register.png") no-repeat right 7px;
+}
+.password-register-section {
+  display: flex;
+  justify-content: space-between;
+}
+.password-inputs {
+  margin-top: 20px;
+  width: 99%;
+}
+.email-register-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#validate-password-register-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+#password-register-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+}
+#passwordRegister {
+  background: url("../public/png/password-register.png") no-repeat right 7px;
+}
+#passwordConfirmation {
+  background: url("../public/png/password-validate-register.png") no-repeat
+    right 7px;
 }
 .spinner {
   animation: spin infinite 2s linear;
