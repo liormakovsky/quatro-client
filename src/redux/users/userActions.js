@@ -7,9 +7,6 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  UPDATE_USER_BEGIN,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_ERROR,
   LOGOUT_USER,
 } from "./userTypes";
 
@@ -21,7 +18,7 @@ export const initialState = {
   error: "",
 };
 
-axios.defaults.baseURL = "http://localhost:8181/quatro/server";
+axios.defaults.baseURL = "http://localhost:8181/quatro/quatro-server/";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -37,7 +34,8 @@ export const signupUser = (user) => {
   return async (dispatch) => {
     dispatch({ type: SIGNUP_USER_BEGIN });
     try {
-      const { data } = await axios.post("/signup.php", user);
+      user["method"] = "register";
+      const { data } = await axios.post("/index.php", user);
       if (data !== undefined) {
         const currentUser = data.data;
         dispatch({
@@ -61,9 +59,10 @@ export const loginUser = (user) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     const { email, password } = user;
     try {
-      const { data } = await axios.post(`signin.php`, {
+      const { data } = await axios.post("/index.php", {
         email,
         password,
+        method: "login",
       });
       if (data !== undefined) {
         const currentUser = data.data;

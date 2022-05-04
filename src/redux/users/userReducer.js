@@ -5,9 +5,6 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  UPDATE_USER_BEGIN,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_ERROR,
   LOGOUT_USER,
 } from "./userTypes";
 
@@ -17,12 +14,10 @@ const reducer = (state, action) => {
   switch (action.type) {
     case SIGNUP_USER_BEGIN:
     case LOGIN_USER_BEGIN:
-    case UPDATE_USER_BEGIN:
       return { ...state, isLoading: true };
 
     case SIGNUP_USER_SUCCESS:
     case LOGIN_USER_SUCCESS:
-    case UPDATE_USER_SUCCESS:
       return {
         ...state,
         user: action.payload.currentUser,
@@ -32,7 +27,6 @@ const reducer = (state, action) => {
 
     case SIGNUP_USER_ERROR:
     case LOGIN_USER_ERROR:
-    case UPDATE_USER_ERROR:
       return { ...state, isLoading: false };
 
     case LOGOUT_USER:
