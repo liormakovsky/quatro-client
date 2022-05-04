@@ -332,7 +332,13 @@ const Register = () => {
                   </div>
                   {/*phone end */}
 
-                  <div>{isError && <p>{error}</p>}</div>
+                  <div>
+                    {isError && (
+                      <p className="serverError" dir="rtl">
+                        {error}
+                      </p>
+                    )}
+                  </div>
 
                   {/* Submit section */}
                   <div className="doubleSection" id="submitSection">

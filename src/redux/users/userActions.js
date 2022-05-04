@@ -26,10 +26,6 @@ const addUserToLocalStorage = ({ currentUser }) => {
   localStorage.setItem("user", JSON.stringify(currentUser));
 };
 
-const removeUserFromLocalStorage = () => {
-  localStorage.removeItem("user");
-};
-
 export const signupUser = (user) => {
   return async (dispatch) => {
     dispatch({ type: SIGNUP_USER_BEGIN });
