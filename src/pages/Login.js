@@ -88,7 +88,13 @@ const Login = () => {
                     src="/png/forgot-password-text.png"
                     alt="forgot-password"
                   />
-                  <div>{isError && <p>{error}</p>}</div>
+                  <div>
+                    {isError && (
+                      <p className="serverError" dir="rtl">
+                        {error}
+                      </p>
+                    )}
+                  </div>
                   <button type="submit" id="login-submit" disabled={isLoading}>
                     כניסה לחשבון
                   </button>

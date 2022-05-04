@@ -313,6 +313,11 @@
   color: #fff;
   font-weight: 600;
 }
+.serverError {
+  color: red;
+  font-size: 14pt;
+  margin-top: 20px;
+}
 .spinner {
   animation: spin infinite 2s linear;
   font-size: 32pt;
