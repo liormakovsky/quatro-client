@@ -10,7 +10,9 @@ import { FaSpinner } from "react-icons/fa";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((state) => state.userReducer);
+  const { user, isLoading, isError, error } = useSelector(
+    (state) => state.userReducer
+  );
 
   useEffect(() => {
     if (user && localStorage.getItem("user")) {
@@ -86,7 +88,7 @@ const Login = () => {
                     src="/png/forgot-password-text.png"
                     alt="forgot-password"
                   />
-
+                  <div>{isError && <p>{error}</p>}</div>
                   <button type="submit" id="login-submit" disabled={isLoading}>
                     כניסה לחשבון
                   </button>

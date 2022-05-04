@@ -9,7 +9,9 @@ import { FaSpinner } from "react-icons/fa";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((state) => state.userReducer);
+  const { user, isLoading, isError, error } = useSelector(
+    (state) => state.userReducer
+  );
 
   const navigate = useNavigate();
 
@@ -329,6 +331,8 @@ const Register = () => {
                     />
                   </div>
                   {/*phone end */}
+
+                  <div>{isError && <p>{error}</p>}</div>
 
                   {/* Submit section */}
                   <div className="doubleSection" id="submitSection">

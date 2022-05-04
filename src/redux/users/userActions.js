@@ -7,15 +7,15 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  LOGOUT_USER,
 } from "./userTypes";
 
 const user = localStorage.getItem("user");
 
 export const initialState = {
   isLoading: false,
-  //user: user ? JSON.parse(user) : null,
+  user: user ? JSON.parse(user) : null,
   error: "",
+  isError: false,
 };
 
 axios.defaults.baseURL = "http://localhost:8181/quatro/quatro-server/";
@@ -49,7 +49,10 @@ export const signupUser = (user) => {
         });
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      dispatch({
+        type: SIGNUP_USER_ERROR,
+        payload: { error: error.response.data.data },
+      });
     }
   };
 };
@@ -77,21 +80,10 @@ export const loginUser = (user) => {
         });
       }
     } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
-};
-
-export const logoutUser = (dispatch) => {
-  return (dispatch) => {
-    axios
-      .post("api/v1/auth/logout")
-      .then(function (response) {
-        dispatch({ type: LOGOUT_USER });
-        removeUserFromLocalStorage();
-      })
-      .catch(function (error) {
-        console.log(error.response.data.message);
+      dispatch({
+        type: LOGIN_USER_ERROR,
+        payload: { error: error.response.data.data },
       });
+    }
   };
 };
