@@ -15,8 +15,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && Cookies.get("XSRF-TOKEN")) {
-      navigate("/total-messages");
+    if (user && localStorage.getItem("user")) {
+      navigate("/tnx");
     }
   }, [user]);
 
@@ -32,13 +32,14 @@ const Register = () => {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const initialValues = {
-    usr_name: "",
     email: "",
     passwordRegister: "",
+    passwordConfirmation: "",
     mailAdvertiseCheckbox: false,
     firstName: "",
     lastName: "",
     homeNumber: "",
+    address: "",
     entryCode: "",
     apartment: "",
     city: "",
@@ -63,9 +64,10 @@ const Register = () => {
       .number()
       .typeError("הכנס מספרים בלבד")
       .required("מספר הבית הינו שדה חובה"),
+    address: yup.string().required("בבקשה הכנס את כתובתך"),
     entryCode: yup.number().typeError("הכנס מספרים בלבד"),
     apartment: yup.number().typeError("הכנס מספרים בלבד"),
-    city: yup.string().required("שדה העיר הינו שדה חובה"),
+    city: yup.string().required("בבקשה הכנס את שם העיר שבה הנך מתגורר"),
     phone: yup
       .string()
       .matches(phoneRegExp, "המספר הטלפון אינו תקין")

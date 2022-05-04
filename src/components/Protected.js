@@ -6,12 +6,11 @@ import { useSelector } from "react-redux";
 const Protected = (props) => {
   const { user } = useSelector((state) => state.userReducer);
 
-  const sid = Cookies.get("XSRF-TOKEN") || "";
-
-  if (!user || !sid) {
+  if (!user) {
+    console.log("lira");
     return <Navigate to="/login" />;
   }
-
+  console.log("lira2");
   let Cmp = props.Cmp;
   return (
     <>

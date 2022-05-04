@@ -17,14 +17,13 @@ const user = localStorage.getItem("user");
 
 export const initialState = {
   isLoading: false,
-  user: user ? JSON.parse(user) : null,
+  //user: user ? JSON.parse(user) : null,
   error: "",
 };
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "http://localhost:8181/quatro/server";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.headers.post["Content-Type"] = "application/json";
-axios.defaults.withCredentials = true;
 
 const addUserToLocalStorage = ({ currentUser }) => {
   localStorage.setItem("user", JSON.stringify(currentUser));
@@ -35,29 +34,22 @@ const removeUserFromLocalStorage = () => {
 };
 
 export const signupUser = (user) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({ type: SIGNUP_USER_BEGIN });
     try {
-      axios.get("/sanctum/csrf-cookie").then(async (response) => {
-        const { usr_name, email, password } = user;
-        const { data } = await axios.post("api/v1/auth/register", {
-          usr_name,
-          email,
-          password,
+      const { data } = await axios.post("/signup.php", user);
+      if (data !== undefined) {
+        const currentUser = data.data;
+        dispatch({
+          type: SIGNUP_USER_SUCCESS,
+          payload: { currentUser },
         });
-        if (data !== undefined) {
-          const currentUser = data.data;
-          dispatch({
-            type: SIGNUP_USER_SUCCESS,
-            payload: { currentUser },
-          });
-          addUserToLocalStorage({ currentUser });
-        } else {
-          dispatch({
-            type: SIGNUP_USER_ERROR,
-          });
-        }
-      });
+        addUserToLocalStorage({ currentUser });
+      } else {
+        dispatch({
+          type: SIGNUP_USER_ERROR,
+        });
+      }
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -65,57 +57,26 @@ export const signupUser = (user) => {
 };
 
 export const loginUser = (user) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     const { email, password } = user;
     try {
-      axios.get("/sanctum/csrf-cookie").then(async (response) => {
-        const { data } = await axios.post(`/api/v1/auth/login`, {
-          email,
-          password,
-        });
-        if (data !== undefined) {
-          const currentUser = data.data;
-          dispatch({
-            type: LOGIN_USER_SUCCESS,
-            payload: { currentUser },
-          });
-          addUserToLocalStorage({ currentUser });
-        } else {
-          dispatch({
-            type: LOGIN_USER_ERROR,
-          });
-        }
+      const { data } = await axios.post(`signin.php`, {
+        email,
+        password,
       });
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
-};
-
-export const updateUser = (user, dispatch) => {
-  return (dispatch) => {
-    dispatch({ type: UPDATE_USER_BEGIN });
-    try {
-      axios.get("/sanctum/csrf-cookie").then(async (response) => {
-        const { usr_name, email } = user;
-        const { data } = await axios.post("api/v1/auth/updateUser", {
-          usr_name,
-          email,
+      if (data !== undefined) {
+        const currentUser = data.data;
+        dispatch({
+          type: LOGIN_USER_SUCCESS,
+          payload: { currentUser },
         });
-        if (data !== undefined) {
-          const currentUser = data.data;
-          dispatch({
-            type: UPDATE_USER_SUCCESS,
-            payload: { currentUser },
-          });
-          addUserToLocalStorage({ currentUser });
-        } else {
-          dispatch({
-            type: UPDATE_USER_ERROR,
-          });
-        }
-      });
+        addUserToLocalStorage({ currentUser });
+      } else {
+        dispatch({
+          type: LOGIN_USER_ERROR,
+        });
+      }
     } catch (error) {
       console.log(error.response.data.message);
     }
