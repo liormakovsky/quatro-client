@@ -10,7 +10,7 @@
   object-position: center center;
 }
 
-/* Login */
+/*login page*/
 #login-container {
   background-color: #fff;
   width: 608px;
@@ -98,7 +98,7 @@
   margin-bottom: 55px;
 }
 
-/* Register */
+/*register page*/
 
 #register-container {
   margin-top: 50px;
@@ -285,6 +285,31 @@
   border-radius: 50px;
   border: 0;
   background-color: #dc373f;
+  color: #fff;
+  font-weight: 600;
+}
+
+/*tnx page*/
+#tnxContainer {
+  background-color: #fff;
+  width: 608px;
+  min-height: 300px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+#tnxContainer > h3 {
+  margin-top: 50px;
+}
+#tnxContainer button {
+  margin-top: 50px;
+  width: 278px;
+  height: 50px;
+  border-radius: 50px;
+  border: 0;
+  background-color: #083c63;
   color: #fff;
   font-weight: 600;
 }

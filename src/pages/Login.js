@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import _ from "lodash";
-import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux";
 import { FaSpinner } from "react-icons/fa";

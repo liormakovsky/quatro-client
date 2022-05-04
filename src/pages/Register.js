@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../redux";
 import _ from "lodash";
-import Cookies from "js-cookie";
 import { FaSpinner } from "react-icons/fa";
 
 const Register = () => {

@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const ThankYou = () => {
-  const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.messagesReducer);
-
   return (
-    <>
-      <h1>this is thank you page</h1>
-    </>
+    <div className="main-container">
+      <div id="tnxContainer">
+        <h3>תודה שנכנסת למערכת</h3>
+        <Link to="/login">
+          <button onClick={() => localStorage.clear()}>התנתק מהמערכת</button>
+        </Link>
+      </div>
+    </div>
   );
 };
 
